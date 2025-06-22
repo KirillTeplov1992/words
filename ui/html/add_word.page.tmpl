@@ -1,0 +1,15 @@
+{{template "base" .}}
+
+{{define "title"}}Добавьте новое слово{{end}}
+
+{{define "main"}}
+<p>{{ .Topic.TopicName }}</p>
+
+<form action = "/topic/{{ .Topic.TopicID }}/add_word" method = "post">
+    <input class = "text" type = "text" name = "word" id = "word" placeholder = "Слово:"><br>
+    <textarea class = "text-content" name = "translation" id = "translation" placeholder = "Перевод"></textarea><br>
+    <button class = "button">Добавить слово</button>
+</form>
+
+{{end}}
+

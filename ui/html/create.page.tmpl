@@ -1,0 +1,13 @@
+{{template "base" .}}
+
+{{define "title"}}Создание новой темы{{end}}
+
+{{define "main"}}
+<div class="container">
+<form action = "/add_topic" method = "post">
+    <input class = "text" type = "text" name = "name" id = "name" placeholder = "Введите название темы:"><br>
+    <button class = "button">Добавить тему</button>
+</form>
+</div>
+
+{{end}}

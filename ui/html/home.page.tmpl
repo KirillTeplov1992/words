@@ -1,0 +1,21 @@
+{{template "base" .}}
+
+{{define "title"}}Домашняя страница{{end}}
+
+{{define "main"}}
+<div class = "topics">
+    {{ range .Topics }}
+        <span class = "topic">
+            <a href = "/topic?id={{ .ID  }}">
+            <h1>{{ .Name }}</h1> 
+            </a>
+            <a class = "del-btn" href = "/delete?id={{ .ID }}">X</a>
+            <a class = "edit-btn" href = "/edit_topic?id={{ .ID }}">E</a>
+        </span>
+    {{ else }}
+        <p>Перед тем как добавить новые слова, добавьте темы их объединяющие</p>
+    {{ end }}
+</div>
+
+
+{{end}}

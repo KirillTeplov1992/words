@@ -1,0 +1,17 @@
+{{template "base" .}}
+
+{{define "title"}}{{ .Topic.TopicName }}{{end}}
+
+{{define "main"}}
+    <h1>{{ .Topic.TopicName }}</h1>
+    {{range .Topic.Words}}
+        <details>
+            <summary>{{ .Word }}</summary>
+            {{ .Translation }}
+        </details>
+    {{ else }}
+        <p>Сначала добавьте слова в выбранную тему</p>
+    {{end}}
+    <a href = "/topic/{{ .Topic.TopicID }}/add_word_form">Добавить слово</a>
+{{end}}
+

@@ -1,0 +1,13 @@
+{{template "base" .}}
+
+{{define "title"}}Редактирование темы{{end}}
+
+{{define "main"}}
+<div class="container">
+<form action = "/update_topic?id={{ .TopicName.ID }}" method = "post">
+    <textarea class = "text" type = "text" name = "name" id = "name" placeholder = "Название темы:">{{ .TopicName.Name }}</textarea><br>
+    <button class = "button">Редактировать</button> 
+</form>
+</div>
+
+{{end}}

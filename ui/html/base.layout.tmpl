@@ -1,0 +1,23 @@
+{{define "base"}}
+<!doctype html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <title>{{template "title" .}} - Microblog</title>
+        <!-- Ссылка на CSS стили -->
+        <link rel='stylesheet' href='/static/css/main.css'>
+    </head>
+    <body>
+        <div>Microblog:
+        <a href="/">Home</a>
+        <a href="/create">Добавить тему</a>
+        </div>
+        <hr>
+        <main>
+            {{template "main" .}}
+        </main>
+        <!-- Вызываем шаблон подвала -->
+        {{template "footer" .}}
+    </body>
+</html>
+{{end}}
