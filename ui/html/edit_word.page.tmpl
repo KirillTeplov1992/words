@@ -1,0 +1,14 @@
+{{template "base" .}}
+
+{{define "title"}}Редактирование слова{{end}}
+
+{{define "main"}}
+<div class = "container">
+<form action = "/edit_word?id={{ .Word.ID }}" method = "post">
+    <textarea class = "text" type = "text" name = "word" id = "word" placeholder = "Слово:">{{ .Word.Word }}</textarea><br>
+    <textarea class = "text-content" name = "translation" id = "translation" placeholder = "Перевод">{{ .Word.Translation }}</textarea><br>
+    <button class = "button">Редакатировать</button>
+</form>
+</div>
+
+{{end}}

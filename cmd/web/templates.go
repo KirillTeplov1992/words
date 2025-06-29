@@ -10,6 +10,7 @@ type templateData struct {
 	TopicName *models.Topic
 	Topic *models.TopicContent
 	Topics []*models.Topic
+	Word  *models.Word
 }
 
 func newTemplateCache(dir string) (map[string]*template.Template, error) {

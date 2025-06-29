@@ -12,6 +12,8 @@ func (app *application) routes() *http.ServeMux {
 	mux.HandleFunc("/topic/{id}/add_word", app.addWord)
 	mux.HandleFunc("/edit_topic", app.editTopic)
 	mux.HandleFunc("/update_topic", app.updateTopic)
+	mux.HandleFunc("/word", app.openEditWordPage)
+	mux.HandleFunc("/edit_word", app.editWord)
 
 	//подключаю CSS стили
     fileServer := http.FileServer(http.Dir("./ui/static/"))

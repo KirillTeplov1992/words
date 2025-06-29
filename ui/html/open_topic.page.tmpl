@@ -6,7 +6,7 @@
     <h1>{{ .Topic.TopicName }}</h1>
     {{range .Topic.Words}}
         <details>
-            <summary>{{ .Word }}</summary>
+            <summary>{{ .Word }} <a href = "/word?id={{ .ID }}">E</a></summary>
             {{ .Translation }}
         </details>
     {{ else }}

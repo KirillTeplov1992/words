@@ -11,6 +11,7 @@ import (
 
 type application struct {
 	topics *mysql.TopicModel
+	words *mysql.WordModel
 	templateCache map[string]*template.Template
 }
 
@@ -31,6 +32,7 @@ func main() {
 
 	app := &application{
 		topics: &mysql.TopicModel{DB: db},
+		words : &mysql.WordModel{DB: db},
 		templateCache : templateCache,	
 	}
 
