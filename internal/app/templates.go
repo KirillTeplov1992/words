@@ -1,7 +1,7 @@
-package main
+package app
 
 import (
-	"words/pkg/models"
+	"words/internal/models"
 	"html/template"
 	"path/filepath"
 )
@@ -11,6 +11,7 @@ type templateData struct {
 	Topic *models.TopicContent
 	Topics []*models.Topic
 	Word  *models.Word
+	Errors []string
 }
 
 func newTemplateCache(dir string) (map[string]*template.Template, error) {

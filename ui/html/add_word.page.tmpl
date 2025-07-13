@@ -5,9 +5,17 @@
 {{define "main"}}
 <p>{{ .Topic.TopicName }}</p>
 
+{{if .Errors }}
+    {{ range .Errors }}
+    <ul>
+        <li style = "color: red;">{{ . }}</li>
+    </ul>
+    {{ end }}
+{{ end }}
+
 <form action = "/topic/{{ .Topic.TopicID }}/add_word" method = "post">
-    <input class = "text" type = "text" name = "word" id = "word" placeholder = "Слово:"><br>
-    <textarea class = "text-content" name = "translation" id = "translation" placeholder = "Перевод"></textarea><br>
+    <textarea class = "text" type = "text" name = "word" id = "word" placeholder = "Слово:">{{ .Word.Word }}</textarea><br>
+    <textarea class = "text-content" name = "translation" id = "translation" placeholder = "Перевод">{{ .Word.Translation }}</textarea><br>
     <button class = "button">Добавить слово</button>
 </form>
 

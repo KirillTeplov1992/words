@@ -1,15 +1,12 @@
-package mysql
+package store
 
-import (
-	"database/sql"
-	"words/pkg/models"
-)
+import "words/internal/models"
 
-type WordModel struct{
-	DB *sql.DB
+type WordRepository struct{
+	store *Store
 }
 
-func (mw *WordModel) GetWord (id int) (*models.Word, error){
+func (wr *WordRepository) GetWord (id int) (*models.Word, error){
 	stmt := `SELECT
 				id,
 				word,
@@ -18,7 +15,7 @@ func (mw *WordModel) GetWord (id int) (*models.Word, error){
 				words
 			WHERE
 				id = ?`
-	row := mw.DB.QueryRow(stmt, id)
+	row := wr.store.db.QueryRow(stmt, id)
 
 	word := &models.Word{}
 	err := row.Scan(&word.ID, &word.Word, &word.Translation)
@@ -29,7 +26,7 @@ func (mw *WordModel) GetWord (id int) (*models.Word, error){
 	return word, err
 }
 
-func (mw *WordModel) UpdateWord (id int, word string, translation string) (int, error) {
+func (wr *WordRepository) UpdateWord (id int, word string, translation string) (int, error) {
 	stmt := `UPDATE
 				 words
 			SET
@@ -38,7 +35,7 @@ func (mw *WordModel) UpdateWord (id int, word string, translation string) (int, 
 			WHERE
 				id = ?`
 
-	_, err := mw.DB.Exec(stmt, word, translation, id)
+	_, err := wr.store.db.Exec(stmt, word, translation, id)
 	if err != nil {
 		return 0, err
 	}

@@ -3,9 +3,16 @@
 {{define "title"}}Создание новой темы{{end}}
 
 {{define "main"}}
+{{if .Errors }}
+    {{ range .Errors }}
+    <ul>
+        <li style = "color: red;">{{ . }}</li>
+    </ul>
+    {{ end }}
+{{ end }}
 <div class="container">
 <form action = "/add_topic" method = "post">
-    <input class = "text" type = "text" name = "name" id = "name" placeholder = "Введите название темы:"><br>
+    <textarea class = "text" type = "text" name = "name" id = "name" placeholder = "Введите название темы:">{{ .TopicName.Name }}</textarea><br>
     <button class = "button">Добавить тему</button>
 </form>
 </div>
