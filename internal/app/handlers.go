@@ -29,13 +29,13 @@ func (app *Application) create (w http.ResponseWriter, r *http.Request){
 func (app *Application) addTopic (w http.ResponseWriter, r *http.Request){
 	name := r.FormValue("name")
 
-	var errList []string
-
-	if name == ""{
-		t := models.Topic{
+	t := models.Topic{
 			Name: name,
 		}
 
+	var errList []string
+
+	if name == ""{
 		errList = append(errList, "Введите название темы")
 		app.render(w, r, "create.page.tmpl", &templateData{
 			TopicName: &t,
@@ -145,15 +145,31 @@ func (app *Application) editTopic (w http.ResponseWriter, r *http.Request){
 func (app *Application) updateTopic (w http.ResponseWriter, r *http.Request) {
 	name := r.FormValue("name")
 
+	var errList []string
+
 	id, err := strconv.Atoi(r.URL.Query().Get("id"))
 	if err != nil || id < 1{
 		http.NotFound(w,r)
 		return
 	}
 
-	app.store.Topic().UpdateTopic(id, name)
+	t := models.Topic{
+		ID: id,
+		Name: name,
+	}
 
-	http.Redirect(w, r, fmt.Sprintf("/"), http.StatusSeeOther)
+	if name == ""{
+		errList = append(errList, "Введите название темы")
+		app.render(w, r, "edit_topic.page.tmpl", &templateData{
+		TopicName : &t,
+		Errors: errList,
+	})	
+	}else {
+		app.store.Topic().UpdateTopic(id, name)
+		http.Redirect(w, r, fmt.Sprintf("/"), http.StatusSeeOther)
+	}
+
+	
 }
 
 func (app *Application) openEditWordPage (w http.ResponseWriter, r *http.Request) {

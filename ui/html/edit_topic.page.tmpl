@@ -3,6 +3,13 @@
 {{define "title"}}Редактирование темы{{end}}
 
 {{define "main"}}
+{{if .Errors }}
+    {{ range .Errors }}
+    <ul>
+        <li style = "color: red;">{{ . }}</li>
+    </ul>
+    {{ end }}
+{{ end }}
 <div class="container">
 <form action = "/update_topic?id={{ .TopicName.ID }}" method = "post">
     <textarea class = "text" type = "text" name = "name" id = "name" placeholder = "Название темы:">{{ .TopicName.Name }}</textarea><br>
